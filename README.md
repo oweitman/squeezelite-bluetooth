@@ -25,6 +25,28 @@ sudo apt-get install pi-squeezelite
 Normaly you get here an older version. After installation you can download an replace (/usr/bin/squeezelite) the squeezelite executable from the author of squeezelite
 [Sourceforge squeezelite/Linux](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/). For raspberry use the arm6f-archives
 
+### 3. Build and install bluez-alsa
+This library is used for the transport of sounddata from bluetooth to the alsa sound-system
+
+Install dependencies
+```bash
+sudo apt-get update
+sudo apt-get install -y libasound2-dev dh-autoreconf libortp-dev bluez pi-bluetooth bluez-tools libbluetooth-dev libusb-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev libsbc1 libsbc-dev
+```
+
+Download and build the library
+```bash
+cd ~
+git clone https://github.com/Arkq/bluez-alsa.git
+cd bluez-alsa
+autoreconf --install
+mkdir build && cd build
+../configure --disable-hcitop --with-alsaplugindir=/usr/lib/arm-linux-gnueabihf/alsa-lib
+make && sudo make install
+```
+
+
+
 ### 3. Install dbus-python libraries for python3
 This library is used to track the connection-status of a BT-speaker. 
 
@@ -46,6 +68,7 @@ sudo apt-get install libdbus-glib-1-dev
 /etc/asound.conf
 /etc/pyserver/btspeaker-monitor.py
 /etc/systemd/system/btspeaker-monitor.service
+/etc/systemd/system/bluezalsa.service
 ```
 
 ### 6. change owner of files to root
@@ -54,6 +77,7 @@ sudo apt-get install libdbus-glib-1-dev
 sudo chown root:root /etc/asound.conf
 sudo chown root:root /etc/pyserver/btspeaker-monitor.py
 sudo chown root:root /etc/systemd/system/btspeaker-monitor.service
+sudo chown root:root /etc/systemd/system/bluezalsa.service
 ```
 
 ### 7. change execution flag
@@ -62,11 +86,13 @@ sudo chown root:root /etc/systemd/system/btspeaker-monitor.service
 sudo chmod +x /etc/pyserver/btspeaker-monitor.py
 ```
 
-### 8. enable the btspeaker-monitor.service
+### 8. enable the services
 
 ```bash
 sudo systemctl daemon-reload
+sudo systemctl enable bluezalsa.service
 sudo systemctl enable btspeaker-monitor.service
+sudo systemctl start bluezalsa.service
 sudo systemctl start btspeaker-monitor.service
 ```
 
@@ -88,7 +114,7 @@ sudo bluetoothctl
 ```
 
 After that new recognized devices are listed. maybe you have to wait some time. if not check the pairing mode of your device.
-If your BT-speaker is listet, note the Device-ID as follows 00:00:00:00:00:00
+If your BT-speaker is listed, note the Device-ID as follows 00:00:00:00:00:00
 Then you register your device. all 00:00:00:00:00:00 pleas replace with your device id
 
 ```bash
