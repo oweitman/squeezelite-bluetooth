@@ -39,9 +39,9 @@ if the installation of dbus-python fails in case of missing DBUS-1 then you have
 sudo apt-get install libdbus-glib-1-dev
 ```
 
-4. reboot your raspberry
+### 4. reboot your raspberry
 
-5. copy the following files to your filesystem
+### 5. copy the following files to your filesystem
 
 ```bash
 /etc/asound.conf
@@ -49,7 +49,7 @@ sudo apt-get install libdbus-glib-1-dev
 /etc/systemd/system/btspeaker-monitor.service
 ```
 
-6. change owner of files to root
+### 6. change owner of files to root
 
 ```bash
 sudo chown root:root /etc/asound.conf
@@ -57,13 +57,13 @@ sudo chown root:root /etc/pyserver/btspeaker-monitor.py
 sudo chown root:root /etc/systemd/system/btspeaker-monitor.service
 ```
 
-7. change execution flag
+### 7. change execution flag
 
 ```bash
 sudo chmod +x /etc/pyserver/btspeaker-monitor.py
 ```
 
-8. enable the btspeaker-monitor.service
+### 8. enable the btspeaker-monitor.service
 
 ```bash
 sudo systemctl daemon-reload
@@ -74,7 +74,7 @@ sudo systemctl start btspeaker-monitor.service
 ---
 ## Connect and register your BT-speaker for the first time
 
-1. Turn on your BT-speaker, change to pairing-mode and start the bluetooth-utility
+### 1. Turn on your BT-speaker, change to pairing-mode and start the bluetooth-utility
 
 ```bash
 sudo bluetoothctl 
@@ -100,7 +100,7 @@ Then you register your device. all 00:00:00:00:00:00 pleas replace with your dev
 ```
 if there was no error, your device is now connected, trusted and can connected next time without interaction
 
-2. connect the alsa-sound-system to your BT-speaker
+### 2. connect the alsa-sound-system to your BT-speaker
 Edit the following asound.conf and rerplace 00:00:00:00:00:00 with your device id of the BT-speaker
 
 ```bash
@@ -112,4 +112,23 @@ and restart the alsa-sound-system
 sudo alsactl restore
 ```
 
-3. reboot your raspberry
+### 3. Edit /etc/default/squeezelite to adjust the name of your squeezlite instance
+
+
+### 4. reboot your raspberry
+
+## Normal use
+
+### 1. Turn BT-speaker on
+
+The squeezelite can be seen in the LMS-server.
+If the player is in a synchonized group the music starts playing
+if this didnt happen then turn the BT-speaker off and enable again 
+
+### 2. Turn BT-speaker off
+
+The squeezelite-player disappears in the LMS-server.
+Wait up to one minute to turn the BT-speaker again.
+the squeezelite-service needs some time to stop
+
+
