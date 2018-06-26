@@ -24,7 +24,7 @@ sudo apt-get install pi-bluetooth
 sudo apt-get install pi-squeezelite
 ```
 Normaly you get here an older version. After installation you can download an replace (/usr/bin/squeezelite) the squeezelite executable from the author of squeezelite
-[Sourceforge squeezelite/Linux](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/)
+[Sourceforge squeezelite/Linux](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/). For raspberry use the arm6f-archives
 
 ### 3. Install dbus-python libraries for python3
 This library is used to track the connection-status of a BT-speaker. 
@@ -33,7 +33,7 @@ This library is used to track the connection-status of a BT-speaker.
 sudo pip3 install dbus-python
 ```
 
-if the installation of dbus-python fails in case of missing DBUS-1 then you have to unstall another library and try again
+if the installation of dbus-python fails in case of missing DBUS-1 then you have to install another library and try again
 
 ```bash
 sudo apt-get install libdbus-glib-1-dev
@@ -41,7 +41,7 @@ sudo apt-get install libdbus-glib-1-dev
 
 ### 4. reboot your raspberry
 
-### 5. copy the following files to your filesystem
+### 5. copy the following files (from /src of this git) to your filesystem
 
 ```bash
 /etc/asound.conf
@@ -72,6 +72,7 @@ sudo systemctl start btspeaker-monitor.service
 ```
 
 ---
+
 ## Connect and register your BT-speaker for the first time
 
 ### 1. Turn on your BT-speaker, change to pairing-mode and start the bluetooth-utility
@@ -94,14 +95,14 @@ Then you register your device. all 00:00:00:00:00:00 pleas replace with your dev
 ```bash
 [bluetooth]# scan off
 [bluetooth]# pair 00:00:00:00:00:00
-[bluetooth]# trus 00:00:00:00:00:00
+[bluetooth]# trust 00:00:00:00:00:00
 [bluetooth]# connect 00:00:00:00:00:00
 [bluetooth]# exit
 ```
 if there was no error, your device is now connected, trusted and can connected next time without interaction
 
 ### 2. connect the alsa-sound-system to your BT-speaker
-Edit the following asound.conf and rerplace 00:00:00:00:00:00 with your device id of the BT-speaker
+Edit the following asound.conf and replace 00:00:00:00:00:00 with your device id of the BT-speaker
 
 ```bash
 sudo nano /etc/asound.conf
@@ -116,6 +117,8 @@ sudo alsactl restore
 
 
 ### 4. reboot your raspberry
+
+---
 
 ## Normal use
 
