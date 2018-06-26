@@ -23,7 +23,6 @@ sudo apt-get install pi-bluetooth
 ```bash
 sudo apt-get install pi-squeezelite
 ```
-
 Normaly you get here an older version. After installation you can download an replace (/usr/bin/squeezelite) the squeezelite executable from the author of squeezelite
 [Sourceforge squeezelite/Linux](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/)
 
