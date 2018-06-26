@@ -47,7 +47,7 @@ make && sudo make install
 
 
 
-### 3. Install dbus-python libraries for python3
+### 4. Install dbus-python libraries for python3
 This library is used to track the connection-status of a BT-speaker. 
 
 ```bash
@@ -60,9 +60,9 @@ if the installation of dbus-python fails in case of missing DBUS-1 then you have
 sudo apt-get install libdbus-glib-1-dev
 ```
 
-### 4. reboot your raspberry
+### 5. reboot your raspberry
 
-### 5. copy the following files (from /src of this git) to your filesystem
+### 6. copy the following files (from /src of this git) to your filesystem
 
 ```bash
 /etc/asound.conf
@@ -71,7 +71,7 @@ sudo apt-get install libdbus-glib-1-dev
 /etc/systemd/system/bluezalsa.service
 ```
 
-### 6. change owner of files to root
+### 7. change owner of files to root
 
 ```bash
 sudo chown root:root /etc/asound.conf
@@ -80,13 +80,13 @@ sudo chown root:root /etc/systemd/system/btspeaker-monitor.service
 sudo chown root:root /etc/systemd/system/bluezalsa.service
 ```
 
-### 7. change execution flag
+### 8. change execution flag
 
 ```bash
 sudo chmod +x /etc/pyserver/btspeaker-monitor.py
 ```
 
-### 8. enable the services
+### 9. enable the services
 
 ```bash
 sudo systemctl daemon-reload
