@@ -1,0 +1,17 @@
+[Unit]
+Description=Bluetooth Speaker Connectionmonitor
+After=syslog.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/etc/pyserver
+ExecStart=/etc/pyserver/btspeaker-monitor.py
+SyslogIdentifier=btspeaker-monitor
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
