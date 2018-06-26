@@ -12,13 +12,13 @@ This guide describe the sound-output for alsa. I have previously tried it unsucc
 
 ## Basic installation part
 
-1. Check/Install Bluetooth on the raspberry
+### 1. Check/Install Bluetooth on the raspberry
 
 ```bash
 sudo apt-get install pi-bluetooth
 ```
 
-2. Check/Install squeezelite on the squeezelite
+### 2. Check/Install squeezelite on the squeezelite
 
 ```bash
 sudo apt-get install pi-squeezelite
@@ -26,7 +26,7 @@ sudo apt-get install pi-squeezelite
 Normaly you get here an older version. After installation you can download an replace (/usr/bin/squeezelite) the squeezelite executable from the author of squeezelite
 [Sourceforge squeezelite/Linux](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/)
 
-3. Install dbus-python libraries for python3
+### 3. Install dbus-python libraries for python3
 This library is used to track the connection-status of a BT-speaker. 
 
 ```bash
