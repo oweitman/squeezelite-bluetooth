@@ -10,7 +10,7 @@ Another problem was the automaticly reconnection of the BT-speaker.
 
 This guide describe the sound-output for alsa. I have previously tried it unsuccessfully with pulseaudio.
 
-##Basic installation part
+## Basic installation part
 
 1. Check/Install Bluetooth on the raspberry
 
@@ -73,7 +73,7 @@ sudo systemctl start btspeaker-monitor.service
 ```
 
 ---
-##Connect and register your BT-speaker for the first time
+## Connect and register your BT-speaker for the first time
 
 1. Turn on your BT-speaker, change to pairing-mode and start the bluetooth-utility
 
