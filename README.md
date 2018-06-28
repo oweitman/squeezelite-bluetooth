@@ -5,7 +5,7 @@ The bluetooth-speaker should automaticly connect to the headless raspberry pi an
 music without touching the raspberry pi.
 
 One Poblem was, if the BT-speaker disconnects, squeezelite didnt recognize this, create errors and the service stops.
-Another problem was the automaticly reconnection of the BT-speaker.
+Another problem was the automaticly reconnection of the BT-speaker. In this solution i created a service to track the connection state of bluetooth-speaker devices and start/stop the squeezelite service.
 
 This guide describe the sound-output for alsa. I have previously tried it unsuccessfully with pulseaudio.
 
@@ -26,7 +26,7 @@ Normaly you get here an older version. After installation you can download an re
 [Sourceforge squeezelite/Linux](https://sourceforge.net/projects/lmsclients/files/squeezelite/linux/). For raspberry use the arm6f-archives
 
 ### 3. Build and install bluez-alsa
-This library is used for the transport of sounddata from bluetooth to the alsa sound-system
+This library is used for the transport of sound-data from bluetooth to the alsa sound-system
 
 Install dependencies
 ```bash
@@ -48,13 +48,13 @@ make && sudo make install
 
 
 ### 4. Install dbus-python libraries for python3
-This library is used to track the connection-status of a BT-speaker. 
+This library is used to track the connection-status of a BT-speaker and start/stop the squeezelite service. 
 
 ```bash
 sudo pip3 install dbus-python
 ```
 
-if the installation of dbus-python fails in case of missing DBUS-1 then you have to install another library and try again
+if the installation of dbus-python fails in case of missing DBUS-1, then you have to install the following library and try again
 
 ```bash
 sudo apt-get install libdbus-glib-1-dev
@@ -113,9 +113,9 @@ sudo bluetoothctl
 [bluetooth]# scan on
 ```
 
-After that new recognized devices are listed. maybe you have to wait some time. if not check the pairing mode of your device.
+After that new recognized devices are listed, you maybe have to wait some time. if your devices is not recognized, then check the pairing mode of your device.
 If your BT-speaker is listed, note the Device-ID as follows 00:00:00:00:00:00
-Then you register your device. all 00:00:00:00:00:00 pleas replace with your device id
+Then you register your device. please replace all 00:00:00:00:00:00 with your device id
 
 ```bash
 [bluetooth]# scan off
@@ -124,7 +124,7 @@ Then you register your device. all 00:00:00:00:00:00 pleas replace with your dev
 [bluetooth]# connect 00:00:00:00:00:00
 [bluetooth]# exit
 ```
-if there was no error, your device is now connected, trusted and can connected next time without interaction
+if there was no error, your device is now connected, trusted and can connect next time without interaction
 
 ### 2. connect the alsa-sound-system to your BT-speaker
 Edit the following asound.conf and replace 00:00:00:00:00:00 with your device id of the BT-speaker
@@ -150,7 +150,7 @@ sudo alsactl restore
 ### 1. Turn BT-speaker on
 
 The squeezelite can be seen in the LMS-server.
-If the player is in a synchonized group the music starts playing
+If the player is in a synchonized group the music starts playing.
 if this didnt happen then turn the BT-speaker off and enable again 
 
 ### 2. Turn BT-speaker off
