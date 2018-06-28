@@ -1,4 +1,4 @@
-# squeeze-bluetooth
+# squeezelite-bluetooth
 
 The following steps describes how to connect a bluetooth-speaker to a ***Raspberry Pi 3B+ and a squeezelight player***.
 The bluetooth-speaker should automaticly connect to the headless raspberry pi and squeezelite should play
