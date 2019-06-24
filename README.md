@@ -4,10 +4,14 @@ The following steps describes how to connect a bluetooth-speaker to a ***Raspber
 The bluetooth-speaker should automaticly connect to the headless raspberry pi and squeezelite should play
 music without touching the raspberry pi.
 
-One Poblem was, if the BT-speaker disconnects, squeezelite didnt recognize this, create errors and the service stops.
+One Problem was, if the BT-speaker disconnects, squeezelite didnt recognize this, create errors and the service stops.
 Another problem was the automaticly reconnection of the BT-speaker. In this solution i created a service to track the connection state of bluetooth-speaker devices and start/stop the squeezelite service.
 
 This guide describe the sound-output for alsa. I have previously tried it unsuccessfully with pulseaudio.
+
+The 2.version of this guide was enhanced with input from 
+* cpd73 forum.slimdevices.com
+* paul- forum.slimdevices.com
 
 ## Basic installation part
 
@@ -45,8 +49,6 @@ mkdir build && cd build
 make && sudo make install
 ```
 
-
-
 ### 4. Install dbus-python libraries for python3
 This library is used to track the connection-status of a BT-speaker and start/stop the squeezelite service. 
 
@@ -65,7 +67,6 @@ sudo apt-get install libdbus-glib-1-dev
 ### 6. copy the following files (from /src of this git) to your filesystem
 
 ```bash
-/etc/asound.conf
 /etc/pyserver/btspeaker-monitor.py
 /etc/systemd/system/btspeaker-monitor.service
 /etc/systemd/system/bluezalsa.service
@@ -74,8 +75,8 @@ sudo apt-get install libdbus-glib-1-dev
 ### 7. change owner of files to root
 
 ```bash
-sudo chown root:root /etc/asound.conf
 sudo chown root:root /etc/pyserver/btspeaker-monitor.py
+sudo chown root:root /etc/pyserver/bt-devices
 sudo chown root:root /etc/systemd/system/btspeaker-monitor.service
 sudo chown root:root /etc/systemd/system/bluezalsa.service
 ```
@@ -126,22 +127,15 @@ Then you register your device. please replace all 00:00:00:00:00:00 with your de
 ```
 if there was no error, your device is now connected, trusted and can connect next time without interaction
 
-### 2. connect the alsa-sound-system to your BT-speaker
-Edit the following asound.conf and replace 00:00:00:00:00:00 with your device id of the BT-speaker
+### 2. register your BT-speaker and define a nice name
+Edit the following bt-devices and replace 00:00:00:00:00:00 with your device id of the BT-speaker and
+define a nice name after the equal sign. if you have more BT-speaker add more rows
 
 ```bash
-sudo nano /etc/asound.conf
-```
-and restart the alsa-sound-system
-
-```bash
-sudo alsactl restore
+sudo nano /etc/pyserver/bt-devices
 ```
 
-### 3. Edit /etc/default/squeezelite to adjust the name of your squeezlite instance
-
-
-### 4. reboot your raspberry
+### 3. reboot your raspberry
 
 ---
 

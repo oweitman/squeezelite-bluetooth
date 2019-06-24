@@ -4,7 +4,8 @@ After=syslog.target
 
 [Service]
 Type=simple
-User=root
+User=lms
+Environment=LIBASOUND_THREAD_SAFE=0
 WorkingDirectory=/etc/pyserver
 ExecStart=/etc/pyserver/btspeaker-monitor.py
 SyslogIdentifier=btspeaker-monitor
