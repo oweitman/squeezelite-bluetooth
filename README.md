@@ -68,6 +68,7 @@ sudo apt-get install libdbus-glib-1-dev
 
 ```bash
 /etc/pyserver/btspeaker-monitor.py
+/etc/pyserver/bt-devices
 /etc/systemd/system/btspeaker-monitor.service
 /etc/systemd/system/bluezalsa.service
 ```
