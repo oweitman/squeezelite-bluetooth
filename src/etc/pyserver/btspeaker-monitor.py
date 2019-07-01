@@ -5,7 +5,8 @@
 
 from __future__ import absolute_import, print_function, unicode_literals
 
-from gi.repository import GObject as gobject
+#from gi.repository import GObject as gobject
+from gi.repository import GLib as glib
 
 import dbus
 import dbus.mainloop.glib
@@ -82,6 +83,7 @@ if __name__ == '__main__':
     bus = dbus.SystemBus()
     bus.add_signal_receiver(bluealsa_handler, dbus_interface="org.bluealsa.Manager1", interface_keyword='dbus_interface', member_keyword='member')
 
-    mainloop = gobject.MainLoop()
+    #mainloop = gobject.MainLoop()
+    mainloop = glib.MainLoop()
     mainloop.run()
-    
+
