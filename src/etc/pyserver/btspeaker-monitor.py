@@ -30,7 +30,7 @@ def connected(hci, dev, name):
         return
 
     debug("Connected %s" % name,hci,dev)
-    debug(SQUEEZE_LITE, '-o', 'bluealsa:DEV=%s,PROFILE=a2dp' % ( dev), '-n', name, '-m', dev, '-f', '/dev/null')
+    debug(SQUEEZE_LITE, '-o', 'bluealsa:HCI=%s,DEV=%s,PROFILE=a2dp' % ( hci,dev), '-n', name, '-m', dev, '-f', '/dev/null')
     players[key] = Popen([SQUEEZE_LITE, '-o', 'bluealsa:DEV=%s,PROFILE=a2dp' % ( dev), '-n', name, '-m', dev , '-f', '/dev/null'], stdout=DEVNULL, stderr=DEVNULL, shell=False)
 
 def disconnected(dev, name):
@@ -86,4 +86,4 @@ if __name__ == '__main__':
     #mainloop = gobject.MainLoop()
     mainloop = glib.MainLoop()
     mainloop.run()
-
+    
