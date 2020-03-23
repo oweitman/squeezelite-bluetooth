@@ -35,7 +35,11 @@ This library is used for the transport of sound-data from bluetooth to the alsa 
 Install dependencies
 ```bash
 sudo apt-get update
-sudo apt-get install -y libasound2-dev dh-autoreconf libortp-dev bluez pi-bluetooth bluez-tools libbluetooth-dev libusb-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev libsbc1 libsbc-dev
+sudo apt-get install -y libasound2-dev dh-autoreconf libortp-dev \
+          bluez pi-bluetooth bluez-tools libbluetooth-dev \
+          libusb-dev libglib2.0-dev libudev-dev libical-dev \
+          libreadline-dev libsbc1 libsbc-dev \
+          libdbus-glib-1-dev python3-pip
 ```
 
 Download and build the library
@@ -73,7 +77,13 @@ sudo apt-get install libdbus-glib-1-dev
 /etc/systemd/system/bluezalsa.service
 ```
 
-### 7. change owner of files to root
+### 7. change owner of files to root and create a user lms
+
+```bash
+adduser --disabled-login \
+        --no-create-home \
+        --add_extra_groups  lms
+```
 
 ```bash
 sudo chown root:root /etc/pyserver/btspeaker-monitor.py
