@@ -79,13 +79,18 @@ sudo apt-get install libdbus-glib-1-dev
 /etc/systemd/system/bluezalsa.service
 ```
 
-### 7. change owner of files to root and create a user lms
+### 7. change owner of files to root and create a user lms and add user to group
 
 ```bash
 adduser --disabled-login \
         --no-create-home \
-        --add_extra_groups  lms
+        --system  lms
 ```
+
+```bash
+addgroup lms audio
+```
+
 
 ```bash
 sudo chown root:root /etc/pyserver/btspeaker-monitor.py
