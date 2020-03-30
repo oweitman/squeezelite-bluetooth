@@ -13,7 +13,7 @@ The 2.version of this guide was enhanced with input from
 * cpd73 forum.slimdevices.com
 * paul- forum.slimdevices.com
 The 3. version of this guide was improved with input from
-* https://github.com/coissac
+* Eric https://github.com/coissac
 
 ## Basic installation part
 
